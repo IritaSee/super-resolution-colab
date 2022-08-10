@@ -9,10 +9,12 @@ class DIV2K:
                  scale=2,
                  subset='train',
                  downgrade='bicubic',
-                 images_dir='.div2k/images',
-                 caches_dir='.div2k/caches'):
+                 #images_dir='.div2k/images',
+                 images_dir = '/content/drive/MyDrive/super-resolution-master/new_dataset/Y-90',
+                 caches_dir='.Y-90/caches'):
 
-        self._ntire_2018 = True
+        #self._ntire_2018 = True
+        self._ntire_2018 = False
 
         _scales = [2, 3, 4, 8]
 
@@ -89,10 +91,12 @@ class DIV2K:
         return ds
 
     def _hr_cache_file(self):
-        return os.path.join(self.caches_dir, f'DIV2K_{self.subset}_HR.cache')
+        #return os.path.join(self.caches_dir, f'DIV2K_{self.subset}_HR.cache')
+        return os.path.join(self.caches_dir, f'Y-90{self.subset}_HR.cache')
 
     def _lr_cache_file(self):
-        return os.path.join(self.caches_dir, f'DIV2K_{self.subset}_LR_{self.downgrade}_X{self.scale}.cache')
+        #return os.path.join(self.caches_dir, f'DIV2K_{self.subset}_LR_{self.downgrade}_X{self.scale}.cache')
+        return os.path.join(self.caches_dir, f'Y-90{self.subset}_LR_{self.downgrade}_X{self.scale}.cache')
 
     def _hr_cache_index(self):
         return f'{self._hr_cache_file()}.index'
@@ -115,13 +119,17 @@ class DIV2K:
             return f'{image_id:04}x{self.scale}{self.downgrade[0]}.png'
 
     def _hr_images_dir(self):
-        return os.path.join(self.images_dir, f'DIV2K_{self.subset}_HR')
+        #return os.path.join(self.images_dir, f'DIV2K_{self.subset}_HR')
+        return os.path.join(self.images_dir, 'normal')
 
     def _lr_images_dir(self):
         if self._ntire_2018:
             return os.path.join(self.images_dir, f'DIV2K_{self.subset}_LR_{self.downgrade}')
         else:
-            return os.path.join(self.images_dir, f'DIV2K_{self.subset}_LR_{self.downgrade}', f'X{self.scale}')
+            #return os.path.join(self.images_dir, f'DIV2K_{self.subset}_LR_{self.downgrade}', f'X{self.scale}')
+            return os.path.join(self.images_dir, 'downscaled')
+
+#unused for new dataset
 
     def _hr_images_archive(self):
         return f'DIV2K_{self.subset}_HR.zip'
@@ -131,6 +139,7 @@ class DIV2K:
             return f'DIV2K_{self.subset}_LR_{self.downgrade}.zip'
         else:
             return f'DIV2K_{self.subset}_LR_{self.downgrade}_X{self.scale}.zip'
+# until here
 
     @staticmethod
     def _images_dataset(image_files):
