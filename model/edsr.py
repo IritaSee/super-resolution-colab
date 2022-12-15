@@ -4,7 +4,7 @@ from tensorflow.python.keras.models import Model
 from model.common import normalize, denormalize, pixel_shuffle
 
 
-def edsr(scale, num_filters=64, num_res_blocks=8, res_block_scaling=None):
+def edsr(scale, num_filters=64, num_res_blocks=8, res_block_scaling=None): #edit this
     x_in = Input(shape=(None, None, 3))
     x = Lambda(normalize)(x_in)
 
@@ -15,7 +15,7 @@ def edsr(scale, num_filters=64, num_res_blocks=8, res_block_scaling=None):
     x = Add()([x, b])
 
     x = upsample(x, scale, num_filters)
-    x = Conv2D(3, 3, padding='same')(x)
+    x = Conv2D(3, 3, padding='same')(x) #add layer maybe?
 
     x = Lambda(denormalize)(x)
     return Model(x_in, x, name="edsr")
