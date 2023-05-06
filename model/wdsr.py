@@ -1,7 +1,7 @@
 import tensorflow_addons as tfa
 
-from tensorflow.python.keras.layers import Add, Conv2D, Input, Lambda
-from tensorflow.python.keras.models import Model
+from tensorflow.keras.layers import Add, Conv2D, Input, Lambda
+from tensorflow.keras.models import Model
 
 from model.common import normalize, denormalize, pixel_shuffle
 
