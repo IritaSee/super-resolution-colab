@@ -10,7 +10,7 @@ class DIV2K:
                  subset='train',
                  downgrade='bicubic',
                  #images_dir='.div2k/images',
-                 images_dir = '/home/iga/super-resolution-master/new_dataset/Y-90',
+                 images_dir = './new_dataset/Y-90',
                  caches_dir='./.Y-90/caches'):
 
         #self._ntire_2018 = True
