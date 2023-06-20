@@ -1,7 +1,7 @@
 import os
 import tensorflow as tf
 
-from tensorflow.python.data.experimental import AUTOTUNE
+from tensorflow.data.experimental import AUTOTUNE
 
 
 class DIV2K:
@@ -10,7 +10,7 @@ class DIV2K:
                  subset='train',
                  downgrade='bicubic',
                  #images_dir='.div2k/images',
-                 images_dir = '/home/iga/super-resolution-master/new_dataset/Y-90',
+                 images_dir = './new_dataset/Y-90',
                  caches_dir='./.Y-90/caches'):
 
         #self._ntire_2018 = True
@@ -24,9 +24,9 @@ class DIV2K:
             raise ValueError(f'scale must be in ${_scales}')
 
         if subset == 'train':
-            self.image_ids = range(1, 150)
+            self.image_ids = range(30, 150)
         elif subset == 'valid':
-            self.image_ids = range(1, 150)
+            self.image_ids = range(1, 31)
         else:
             raise ValueError("subset must be 'train' or 'valid'")
 
